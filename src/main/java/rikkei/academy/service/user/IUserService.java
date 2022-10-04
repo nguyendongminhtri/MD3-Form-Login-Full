@@ -8,4 +8,5 @@ public interface IUserService extends IGenericService<User> {
     boolean existedByEmail(String email);
     User findById(int id);
     User findByUsernameAndPassword(String username, String password);
+    void changeAvatar(String avatar, int id);
 }

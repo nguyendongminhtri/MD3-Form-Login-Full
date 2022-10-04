@@ -16,5 +16,6 @@
 <body>
 <h1>WELCOME : ${user.name}</h1>
 <a href="users?action=logout">LOG OUT</a>
+<a href="users?action=change_avatar">Change Avatar</a>
 </body>
 </html>

@@ -38,6 +38,9 @@ private IUserService userService = new UserServiceIMPL();
             case "logout":
                 logOut(request,response);
                 break;
+            case "change_avatar":
+                showUploadAvatar(request,response);
+                break;
         }
     }
 
@@ -56,6 +59,9 @@ private IUserService userService = new UserServiceIMPL();
                 break;
             case "login":
                 actionLogin(request,response);
+                break;
+            case "change_avatar":
+                actionUploadAvatar(request,response);
                 break;
         }
     }
@@ -146,5 +152,21 @@ private IUserService userService = new UserServiceIMPL();
             session.invalidate();
             response.sendRedirect("index.jsp");
         }
+    }
+
+    //CHANGE AVATAR
+    public void showUploadAvatar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/upload/upload_avatar.jsp");
+        dispatcher.forward(request,response);
+    }
+    public void actionUploadAvatar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String avatar = request.getParameter("avatar");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        int id = user.getId();
+        userService.changeAvatar(avatar,id);
+        request.setAttribute("avatar", avatar);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/profile/profile.jsp");
+        dispatcher.forward(request,response);
     }
 }

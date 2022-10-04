@@ -48,6 +48,11 @@
                         <a class="nav-link" >${user.name}</a>
                     </li>
                 </c:if>
+                <c:if test='${requestScope["avatar"]!=null}'>
+                    <li class="nav-item">
+                        <img width="50px" height="50px" style="border-radius: 50%" src="${requestScope["avatar"]}" alt="">
+                    </li>
+                </c:if>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
